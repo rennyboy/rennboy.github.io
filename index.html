@@ -10,13 +10,27 @@
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
 				<script type="text/javascript">
 				(function() {
 				emailjs.init("user_zzUAXqUgn3IZP4IdItoQi");
 				})();
 				</script>
+				<script type="text/javascript">
+					window.onload = function() {
+						document.getElementById('contact-form').addEventListener('submit', function(event) {
+							event.preventDefault();
+							// these IDs from the previous steps
+							emailjs.sendForm('contact_service', 'contact_form', this)
+								.then(function() {
+									console.log('SUCCESS!');
+								}, function(error) {
+									console.log('FAILED...', error);
+								});
+						});
+					}
+				</script>
+	</head>
 	<body>
 
 		<!-- Header -->
@@ -106,7 +120,7 @@
 
 					<h3>Get in touch</h3>
 
-					<form action="#" method="post">
+					<form id="contact-form" action="#" method="post">
 
 						<div class="field half first">
 							<label for="name">Name</label>
